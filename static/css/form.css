@@ -1,0 +1,94 @@
+/* FORM */
+form {
+    background-color: #214360;
+    border: 1px solid #214360;
+    border-radius: .1rem;
+    border-radius: 1rem;
+    margin: 1rem .3rem 1rem .3rem;
+    -webkit-box-shadown: 9px 13px 21px 1px rgba(20,20,20,0.34);
+    -moz-box-shadown: 9px 13px 21px 1px rgba(20,20,20,0.34);
+    box-shadow: 9px 13px 21px 1px rgba(20,20,20,0.34);
+    font-family: 'Oxanium', cursive;
+}
+/* FORM CONTENT */
+.form-content {
+    margin: 1rem 0;
+}
+
+label {
+    margin: 0 calc(30% / 2);
+    color: #d2d7e2;
+    text-transform: capitalize;
+}
+
+input {
+    color: #d2d7e2;
+    background-color: #214360;
+    border: 1px solid #d2d7e2;
+    border-radius: 0.27rem;
+    width: 70%;
+    height: 1.5rem;
+    margin: .5rem auto;
+    display: block;
+}
+
+textarea {
+    color: #d2d7e2;
+    background-color: #214360;
+    border: 2px solid #d2d7e2;
+    border-radius: 0.27rem;
+    width: 70%;
+    height: 6rem;
+    margin: .5rem auto;
+    display: block;
+}
+
+select {
+    color: #d2d7e2;
+    background-color: #214360;
+    border: 2px solid #d2d7e2;
+    border-radius: 0.27rem;
+    width: 70%;
+    height: 2rem;
+    margin: .5rem auto;
+    display: block;
+}
+
+option {
+    color: #d2d7e2;
+    background-color: #214360;
+    border: 2px solid #d2d7e2;
+    border-radius: 0.27rem;
+    width: 70%;
+    height: 1.5rem;
+    margin: 0 auto;
+    display: block;
+}
+
+button {
+    margin: .5rem calc(30% / 2);
+    padding: .5rem 1.5rem;
+    background-color: #93fb07;
+    border: 2px solid #93fb07;
+}
+
+/* INPUT VALIDATORS */
+form .is-invalid {
+    border: 2px solid red;
+}
+
+form .is-valid {
+    border: 2px solid #93fb07;
+}
+
+form .feedback-countainer {
+    text-align: center;
+    margin: .5rem auto;
+    padding: .5rem auto;
+}
+
+form #feedback {
+    color: red;
+    font-family: 'Kanit', sans-serif;
+    text-transform: capitalize;
+}

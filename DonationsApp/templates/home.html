@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/goal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/donation.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% if goals %}
+<div class="card">
+    <div class="card-head">
+        <h1>{{ goals.title }}</h1>
+        <p>{{ goals.description }}</p>
+    </div>
+    <div class="progress-countainer">
+        <div class="progress">
+            <span class="progress-bar" style="width: {{ percentage|stringformat:'.2f' }}%"></span>
+        </div>
+    </div>
+    <div class="percentage-container">
+        <span class="percentage">{{ percentage }}%</span>
+    </div>
+    <div class="card-footer">
+        <a href="{% url 'donate' goal_id %}">Donate</a>
+        <p class="price">* <span>${{ goals.price }}</span> for {{ goals.category }}</p>
+    </div>
+</div>
+
+{% for donation in donations %}
+<div class="donate-card">
+    <h2>{{ donation.name }} <span class="donation">adds {{ donation.donation }}</span> {{ goals.category }}</h2>
+    <p>{{ donation.text }}</p>
+    <p class="date"><span>{{ donation.updated_at|timesince }}</span> ago</p>
+</div>
+{% endfor %}
+{% else %}
+
+{% endif %}
+{% endblock %}

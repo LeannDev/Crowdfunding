@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/goal.css' %}">
+{% endblock %}
+
+{% block content %}
+{% if goal %}
+<div class="card">
+    <div class="card-head">
+        <h1>{{ goal.title }}</h1>
+        <p>{{ goal.description }}</p>
+    </div>
+    <div class="progress-countainer">
+        <div class="progress">
+            <span class="progress-bar" style="width: {{ percentage|stringformat:'.2f' }}%"></span>
+        </div>
+    </div>
+    <div class="percentage-container">
+        <span class="percentage">{{ percentage }}%</span>
+    </div>
+    <div class="card-footer">
+        <p class="price">* <span>${{ goal.price }}</span> for {{ goal.category }}</p>
+    </div>
+</div>
+
+<form action="" method="POST" id="form">
+    <div class="form-content">
+        {% csrf_token %}
+        {{form}}
+        <div class="feedback-countainer">
+            <span class="feedback" id="feedback"></span>
+        </div>
+        
+        <button type="submit">Donate</button>
+    </div>
+</form>
+{% endif %}
+{% endblock %}
+
+{% block js %}<script src="{% static 'js/form.js' %}"></script>{% endblock %}

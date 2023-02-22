@@ -1,0 +1,20 @@
+.donate-card {
+    background-color: #214360;
+    border: 1px solid #214360;
+    border-radius: 1rem;
+    margin: 1rem .3rem 1rem .3rem;
+
+    -webkit-box-shadown: 9px 13px 21px 1px rgba(20,20,20,0.34);
+    -moz-box-shadown: 9px 13px 21px 1px rgba(20,20,20,0.34);
+    box-shadow: 9px 13px 21px 1px rgba(20,20,20,0.34);
+}
+
+.donation {
+    color: #93fb07;
+}
+
+.donate-card .date {
+    text-align: end;
+    font-family: 'Press Start 2P', cursive;
+    font-size: .5rem;
+}
