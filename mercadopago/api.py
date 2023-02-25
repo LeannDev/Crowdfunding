@@ -30,7 +30,7 @@ def mp_payment_link(data):
             {
                 "id": data['id'],
                 "category_id": "donation",
-                "title": 'TEST TITLE', #data['title'][:36],
+                "title": f"{data['donation']} {data['category']} for X",
                 "description": data['description'][:36],
                 "quantity": 1,
                 "unit_price": data['price'],

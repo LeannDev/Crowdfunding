@@ -52,10 +52,12 @@ def get_access_token():
     try:
         # search paypal in db
         paypal = PaypalModel.objects.all()[0]
+        print('SEARCH TRUE', paypal)
 
     except:
         # get access token
         requests = new_access_token()
+        print('EXCEPT')
 
         if requests:
             # create access token
@@ -67,12 +69,12 @@ def get_access_token():
     # format datetime db
     updated = paypal.updated_at
     # format and discount expires in
-    expires = now - timedelta(seconds=paypal.expires_in)
+    expires = paypal.updated_at + timedelta(seconds=paypal.expires_in)
     
     # expiration check
-    print('UPDATED DATE', updated)
-    print('EXPIRES DATE', expires)
-    if updated.strftime('%Y-%m-%d %H:%M:%S') <= expires.strftime('%Y-%m-%d %H:%M:%S'):
+    print('UPDATED DATE', updated.strftime('%Y-%m-%d %H:%M:%S'))
+    print('EXPIRES DATE', expires.strftime('%Y-%m-%d %H:%M:%S'))
+    if now.strftime('%Y-%m-%d %H:%M:%S') >= expires.strftime('%Y-%m-%d %H:%M:%S'):
         print('EXPIRES')
         # if expire get new access token
         new_requests = new_access_token()
@@ -113,7 +115,7 @@ def pp_payment_link(data):
             }
         ],
         'application_context': {
-            "brand_name": f"{data['donation']} {data['category']} - {data['site']}",
+            "brand_name": f"{data['donation']} {data['category']} for X- {data['site']}", # CHANGE X
             "landing_page": "NO_PREFERENCE",
             "user_action": "PAY_NOW",
             "return_url": f"https:{data['site']}/donate/success/",

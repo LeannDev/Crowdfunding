@@ -4,8 +4,11 @@
 {% block title %}{% endblock %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/form.css' %}">
-    <link rel="stylesheet" href="{% static 'css/goal.css' %}">
+<!-- Google recaptcha -->
+<script src="https://www.google.com/recaptcha/api.js"></script>
+
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+<link rel="stylesheet" href="{% static 'css/goal.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -32,14 +35,26 @@
     <div class="form-content">
         {% csrf_token %}
         {{form}}
+
         <div class="feedback-countainer">
             <span class="feedback" id="feedback"></span>
         </div>
         
-        <button type="submit">Donate</button>
+        <button class="g-recaptcha" 
+        data-sitekey="{{reCAPTCHA_site_key}}" 
+        data-callback='onSubmit' 
+        data-action='submit'>Donate</button>
     </div>
 </form>
 {% endif %}
 {% endblock %}
 
-{% block js %}<script src="{% static 'js/form.js' %}"></script>{% endblock %}
+{% block js %}
+<script src="{% static 'js/form.js' %}"></script>
+
+<script>
+    function onSubmit(token) {
+      document.getElementById("form").submit();
+    }
+</script>
+{% endblock %}

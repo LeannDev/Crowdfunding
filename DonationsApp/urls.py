@@ -11,6 +11,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #path('goal/', GoalCreateView.as_view(), name='goal'), # MOVE TO GOAL APP !!!
     path('donate/', include('donation.urls')),
+    path('webhooks/', include('webhook.urls')),
 ]
 
 # Static files route

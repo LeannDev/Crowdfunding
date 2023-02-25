@@ -159,3 +159,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Custom user
 AUTH_USER_MODEL = 'user.User'
+
+# Google recaptcha
+RECAPTCHA_PUBLIC_KEY = env.str('RECAPTCHA_PUBLIC')
+RECAPTCHA_SECRET_KEY = env.str('RECAPTCHA_SECRET')
