@@ -10,7 +10,7 @@ class HomeView(View):
     template_name = 'home.html'
 
     def get(self, request):
-
+        # //////////////////////////////// CREATE HOME WHIT ALL GOALS /////////////////////////////////
         goals = GoalModel.objects.last()
         if goals:
             goal_id = urlsafe_base64_encode(force_bytes(goals.id))

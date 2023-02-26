@@ -74,6 +74,7 @@ class DonationAddView(View):
                     'site': str(get_current_site(request)),
                 }
 
+                # /////////////////////// CREATE A FUNCTION IN MP AND PP ////////////////////////////////
                 # pay method redirect
                 if data['payment_method'] == 'MP':
                     # add new data in dictionary

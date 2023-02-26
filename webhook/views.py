@@ -25,13 +25,12 @@ class WebhookMp(View):
             # check payment status
             status = payment_status(body['data'])
         
-            if status and status['status'] == 'approved':
+            if status['status'] == 'approved':
                 # decode id
                 id = force_str(urlsafe_base64_decode(status['external_reference']))
-                donation = DonationModel.objects.get(int(id))
+                donation = DonationModel.objects.get(id=int(id))
                 donation.paid = True
                 donation.save()
-                print('/////// STATUS //////', status['status'])
-                
+                # ////////////////////// UPDATE DONATION IN GOAL /////////////////////
         data = {'message': 'success'}
         return JsonResponse(data)

@@ -23,7 +23,7 @@ def mp_payment_link(data):
         "back_urls": {
             "failure": f"https://{data['site']}/donate/failure/",
             "pending": f"https://{data['site']}/donate/pending/",
-            "success": f"https://{data['site']}/donate/success/"
+            "success": f"https://{data['site']}/success/{data['id']}/" # ////////// CREATE DIRS //////////////////
         },
         "external_reference": data['id'],
         "items": [
@@ -35,7 +35,7 @@ def mp_payment_link(data):
                 "quantity": 1,
                 "unit_price": data['price'],
                 "currency_id": "USD"
-                #"picture_url": f"https:{data['site']}/media/"
+                #"picture_url": f"https:{data['site']}/media/" //////////////////// IMG /////////////////////////////
             }
         ],
         "metadata": data
@@ -54,7 +54,7 @@ def mp_payment_link(data):
         headers=headers,
         data=payload
     )
-    print('////////// RESPONSE NEW LINK ///////////', response.text)
+    
     if response and response.status_code == 201:
 
         data_json = json.loads(response.text)
@@ -82,8 +82,6 @@ def payment_status(data):
         data=payload
     )
 
-    print('////////// RESPONSE CODE //////////', response.status_code)
-    print('////////// DATA PAYMENT STATUS //////////', response.text)
     if response and response.status_code == 200:
 
         data_json = json.loads(response.text)
