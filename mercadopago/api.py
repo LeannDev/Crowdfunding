@@ -16,8 +16,8 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 def mp_payment_link(data):
 
     # MercadoPago url for get pay link
-    url = env.str('MP_API_URL')
-
+    url = f"{env.str('MP_API_URL')}/checkout/preferences"
+    print('////// URL //////', url)
     # body
     payload = json.dumps({
         "back_urls": {
@@ -44,7 +44,7 @@ def mp_payment_link(data):
     # headers
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"bearer {env.str('MP_ACCESS_TOKEN')}"
+        "Authorization": f"Bearer {env.str('MP_ACCESS_TOKEN')}"
     }
 
     # POST requests
@@ -54,12 +54,12 @@ def mp_payment_link(data):
         headers=headers,
         data=payload
     )
-
+    print('////////// RESPONSE NEW LINK ///////////', response.text)
     if response and response.status_code == 201:
 
         data_json = json.loads(response.text)
         
-        return data_json['init_point']
+        return data_json
 
     else:
         return False
@@ -67,12 +67,12 @@ def mp_payment_link(data):
 # check payment status
 def payment_status(data):
 
-    url = f"https://api.mercadopago.com/v1/payments/{data['id']}"
+    url = f"{env.str('MP_API_URL')}/v1/payments/{data['id']}"
 
     payload = {}
 
     headers = {
-        "Authorization": f"bearer {env.str('MP_ACCESS_TOKEN')}"
+        "Authorization": f"Bearer {env.str('MP_ACCESS_TOKEN')}"
     }
 
     response = requests.request(
@@ -83,7 +83,7 @@ def payment_status(data):
     )
 
     print('////////// RESPONSE CODE //////////', response.status_code)
-    print('////////// DATA PAYMENT STATUS //////////', response.status_code)
+    print('////////// DATA PAYMENT STATUS //////////', response.text)
     if response and response.status_code == 200:
 
         data_json = json.loads(response.text)

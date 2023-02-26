@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.utils.http import urlsafe_base64_decode
-from django.utils.encoding import force_str
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.utils.encoding import force_str, force_bytes
 from django.contrib.sites.shortcuts import get_current_site
 
 from DonationsApp.settings import RECAPTCHA_PUBLIC_KEY, RECAPTCHA_SECRET_KEY
@@ -76,17 +76,24 @@ class DonationAddView(View):
 
                 # pay method redirect
                 if data['payment_method'] == 'MP':
+                    # add new data in dictionary
+                    data['payment_token'] = None
+                    data['id'] = int(id)
+                    # create a new donation
+                    donation = new_donation(data)
+                    # add new data in dictionary
+                    data['id'] = urlsafe_base64_encode(force_bytes(donation.id))
                     # get MercadoPago pay link
                     pay_link = mp_payment_link(data)
 
                     if pay_link:
-                        # add new data in dictionary
-                        data['payment_token'] = None
-                        data['id'] = int(id)
-                        # create a new donation
-                        new_donation(data)
+                        # # add new data in dictionary
+                        # data['payment_token'] = pay_link['id']
+                        # data['id'] = int(id)
+                        # # create a new donation
+                        # new_donation(data)
                         
-                        return redirect(pay_link)
+                        return redirect(pay_link['init_point'])
 
                 if data['payment_method'] == 'PP':
                     # get or refresh token

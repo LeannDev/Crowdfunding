@@ -1,10 +1,15 @@
+import json
 from django.views import View
+from django.utils.http import urlsafe_base64_decode
+from django.utils.encoding import force_str
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.http.response import JsonResponse
 
 from mercadopago.api import payment_status
+from donation.models import DonationModel
 
+# MercadoPago webhooks
 class WebhookMp(View):
 
     @method_decorator(csrf_exempt)
@@ -12,13 +17,21 @@ class WebhookMp(View):
         return super().dispatch(request, *args, **kwargs)
     
     def post(self, request):
-        print('////////// HEADERS /////////', request.headers)
-        body = request.body
-        print('////////// BODY //////////', body)
-        if body['data']['id']:
-            status = payment_status(body['data'])
-
-            print('////// DATA STATUS /////', status)
         
+        # get body request
+        body = json.loads(request.body)
+        
+        if body['data']['id']:
+            # check payment status
+            status = payment_status(body['data'])
+        
+            if status and status['status'] == 'approved':
+                # decode id
+                id = force_str(urlsafe_base64_decode(status['external_reference']))
+                donation = DonationModel.objects.get(int(id))
+                donation.paid = True
+                donation.save()
+                print('/////// STATUS //////', status['status'])
+                
         data = {'message': 'success'}
         return JsonResponse(data)
