@@ -33,7 +33,7 @@ BASE_APPS = [
 ]
 
 THIRD_APPS = [
-
+    
 ]
 
 LOCAL_APPS = [
@@ -42,6 +42,7 @@ LOCAL_APPS = [
     'mercadopago.apps.MercadopagoConfig',
     'goal.apps.GoalConfig',
     'donation.apps.DonationConfig',
+    'webhook.apps.WebhookConfig',
 ]
 
 INSTALLED_APPS = BASE_APPS + THIRD_APPS + LOCAL_APPS

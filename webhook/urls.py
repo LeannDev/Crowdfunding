@@ -1,6 +1,7 @@
 from django.urls import path
 
-from .views import MpWebhookView
+from .views import WebhookMp
+
 urlpatterns = [
-    path('mercadopago/test', MpWebhookView.as_view(), name='mp_webhook'),
+    path('mercadopago/test/', WebhookMp.as_view(), name='mp_webhook'),
 ]
