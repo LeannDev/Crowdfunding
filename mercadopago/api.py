@@ -63,3 +63,32 @@ def mp_payment_link(data):
 
     else:
         return False
+    
+# check payment status
+def payment_status(data):
+
+    url = f"https://api.mercadopago.com/v1/payments/{data['id']}"
+
+    payload = {}
+
+    headers = {
+        "Authorization": f"bearer {env.str('MP_ACCESS_TOKEN')}"
+    }
+
+    response = requests.request(
+        "GET",
+        url,
+        headers=headers,
+        data=payload
+    )
+
+    print('////////// RESPONSE CODE //////////', response.status_code)
+    print('////////// DATA PAYMENT STATUS //////////', response.status_code)
+    if response and response.status_code == 200:
+
+        data_json = json.loads(response.text)
+        
+        return data_json
+
+    else:
+        return False
