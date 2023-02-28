@@ -8,6 +8,7 @@ from django.http.response import JsonResponse
 
 from mercadopago.api import payment_status
 from donation.models import DonationModel
+from goal.models import GoalModel
 
 # MercadoPago webhooks
 class WebhookMp(View):
@@ -26,12 +27,14 @@ class WebhookMp(View):
             status = payment_status(body['data'])
         
             if status['status'] == 'approved':
-                # decode id
-                id = force_str(urlsafe_base64_decode(status['external_reference']))
-                donation = DonationModel.objects.get(id=int(id))
-                donation.paid = True
-                donation.goal.progress = donation.goal.progress + (donation.goal.price * donation.donation)
-                donation.save()
                 
+                id = force_str(urlsafe_base64_decode(status['external_reference'])) # decode ID
+                donation = DonationModel.objects.get(id=int(id)) # search donation
+                donation.paid = True # update paid
+                donation.save() # save donation
+                goal = GoalModel.objects.get(id=donation.goal.id) # search goal
+                goal.progress = goal.progress + (goal.price * donation.donation) # update progress
+                goal.save() # save goal
+
         data = {'message': 'success'}
         return JsonResponse(data)
