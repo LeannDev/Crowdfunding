@@ -118,8 +118,8 @@ def pp_payment_link(data):
             "brand_name": f"{data['donation']} {data['category']} for X- {data['site']}", # CHANGE X
             "landing_page": "NO_PREFERENCE",
             "user_action": "PAY_NOW",
-            "return_url": f"https:{data['site']}/donate/success/",
-            "cancel_url": f"https:{data['site']}/donate/failure/",
+            "return_url": f"https:{data['site']}/donate/success/{data['id']}/",
+            "cancel_url": f"https:{data['site']}/donate/failure/{data['id']}/",
             "shipping_preference": "NO_SHIPPING",
         },
     }, default=str)
@@ -138,8 +138,6 @@ def pp_payment_link(data):
         data=payload
     )
 
-    print('RESPONSE CODE', response.status_code)
-    print('RESPONSE', response.text)
     if response and response.status_code == 201:
 
         data_json = json.loads(response.text)

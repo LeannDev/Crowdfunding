@@ -38,3 +38,18 @@ class WebhookMp(View):
 
         data = {'message': 'success'}
         return JsonResponse(data)
+
+# PayPal webhooks
+class WebhookPp(View):
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
+    def post(self, request):
+        
+        # get body request
+        body = json.loads(request.body)
+        print(body)
+        data = {'message': 'success'}
+        return JsonResponse(data)

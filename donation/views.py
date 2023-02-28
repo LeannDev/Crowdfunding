@@ -120,7 +120,7 @@ class DonationAddView(View):
                 return render(request, self.template_name, context)
 
         
-    
+# /////////////////////////////////// CREATE CSS FOR MESSAGE /////////////////////
 # donate success
 class DonateSuccessView(View):
 
