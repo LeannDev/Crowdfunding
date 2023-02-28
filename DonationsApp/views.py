@@ -18,7 +18,7 @@ class HomeView(View):
         else:
             goal_id = None
             percentage = 0
-            
+
         context = {
             'goals': goals,
             'donations': goals.donation.filter(paid=True).order_by('-updated_at'),

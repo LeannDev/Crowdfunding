@@ -30,7 +30,8 @@ class WebhookMp(View):
                 id = force_str(urlsafe_base64_decode(status['external_reference']))
                 donation = DonationModel.objects.get(id=int(id))
                 donation.paid = True
+                donation.goal.progress = donation.goal.progress + (donation.goal.price * donation.donation)
                 donation.save()
-                # ////////////////////// UPDATE DONATION IN GOAL /////////////////////
+                
         data = {'message': 'success'}
         return JsonResponse(data)

@@ -7,6 +7,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from DonationsApp.settings import RECAPTCHA_PUBLIC_KEY, RECAPTCHA_SECRET_KEY
 from .forms import DonationForm
 from goal.models import GoalModel
+from .models import DonationModel
 from paypal.api import get_access_token, pp_payment_link
 from mercadopago.api import mp_payment_link
 from .donation import new_donation
@@ -117,5 +118,77 @@ class DonationAddView(View):
             else:
                 # //////////////////////////// RETURN RECAPTCHA ERROR MESSAGE  //////////////////////////////////
                 return render(request, self.template_name, context)
+
+        
+    
+# donate success
+class DonateSuccessView(View):
+
+    template_name = 'success.html'
+
+    def get(self, request, base64):
+
+        try:
+            # decode id in slug with base64, and search in db
+            id = force_str(urlsafe_base64_decode(base64))
+            donation = DonationModel.objects.get(id=id)
+            percentage = (donation.goal.progress * 100) / donation.goal.goal
+
+        except:
+            donation = None
+            percentage = None
+
+        context = {
+            'donation': donation,
+            'percentage': percentage,
+        }
+
+        return render(request, self.template_name, context)
+    
+# donate failure
+class DonateFailureView(View):
+
+    template_name = 'failure.html'
+
+    def get(self, request, base64):
+
+        try:
+            # decode id in slug with base64, and search in db
+            id = force_str(urlsafe_base64_decode(base64))
+            donation = DonationModel.objects.get(id=id)
+            percentage = (donation.goal.progress * 100) / donation.goal.goal
+
+        except:
+            donation = None
+            percentage = None
+
+        context = {
+            'donation': donation,
+            'percentage': percentage,
+        }
+
+        return render(request, self.template_name, context)
+    
+# donate pending
+class DonatePendingView(View):
+
+    template_name = 'pending.html'
+
+    def get(self, request, base64):
+
+        try:
+            # decode id in slug with base64, and search in db
+            id = force_str(urlsafe_base64_decode(base64))
+            donation = DonationModel.objects.get(id=id)
+            percentage = (donation.goal.progress * 100) / donation.goal.goal
+
+        except:
+            donation = None
+            percentage = None
+
+        context = {
+            'donation': donation,
+            'percentage': percentage,
+        }
 
         return render(request, self.template_name, context)

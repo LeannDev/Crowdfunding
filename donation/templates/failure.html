@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/goal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/donation.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% if donation.paid == False %}
+<div class="donate-card" style="border: 3px solid red; text-align: center">
+    <p>Your payment has failed.</p>
+    <a href="#">Try again</a>
+</div>
+
+<div class="card">
+    <div class="card-head">
+        <h1>{{ donation.goal.title }}</h1>
+        <p>{{ donation.goal.description }}</p>
+    </div>
+    <div class="progress-countainer">
+        <div class="progress">
+            <span class="progress-bar" style="width: {{ percentage|stringformat:'.2f' }}%"></span>
+        </div>
+    </div>
+    <div class="percentage-container">
+        <span class="percentage">{{ percentage }}%</span>
+    </div>
+    <div class="card-footer">
+        <p class="price">* <span>${{ donation.goal.price }}</span> for {{ donation.goal.category }}</p>
+    </div>
+</div>
+
+<div class="donate-card">
+    <h2>{{ donation.name }} <span class="donation">adds {{ donation.donation }}</span> {{ donation.goal.category }}</h2>
+    <p>{{ donation.text }}</p>
+    <p class="date"><span>{{ donation.updated_at|timesince }}</span> ago</p>
+</div>
+{% else %}
+
+{% endif %}
+{% endblock %}

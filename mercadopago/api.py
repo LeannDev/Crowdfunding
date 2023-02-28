@@ -17,13 +17,13 @@ def mp_payment_link(data):
 
     # MercadoPago url for get pay link
     url = f"{env.str('MP_API_URL')}/checkout/preferences"
-    print('////// URL //////', url)
+
     # body
     payload = json.dumps({
         "back_urls": {
-            "failure": f"https://{data['site']}/donate/failure/",
-            "pending": f"https://{data['site']}/donate/pending/",
-            "success": f"https://{data['site']}/success/{data['id']}/" # ////////// CREATE DIRS //////////////////
+            "failure": f"https://{data['site']}/donate/failure/{data['id']}/",
+            "pending": f"https://{data['site']}/donate/pending/{data['id']}/",
+            "success": f"https://{data['site']}/donate/success/{data['id']}/"
         },
         "external_reference": data['id'],
         "items": [
