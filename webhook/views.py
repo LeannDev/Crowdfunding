@@ -50,6 +50,16 @@ class WebhookPp(View):
         
         # get body request
         body = json.loads(request.body)
-        print(body)
+        
+        if body['event_type'] == 'CHECKOUT.ORDER.APPROVED':
+
+            payment_token = body['resource']['id'] # ID
+            donation = DonationModel.objects.get(payment_token=payment_token) # search donation
+            donation.paid = True # update paid
+            donation.save() # save donation
+            goal = GoalModel.objects.get(id=donation.goal.id) # search goal
+            goal.progress = goal.progress + (goal.price * donation.donation) # update progress
+            goal.save() # save goal
+
         data = {'message': 'success'}
         return JsonResponse(data)

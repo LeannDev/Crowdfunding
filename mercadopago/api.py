@@ -21,9 +21,9 @@ def mp_payment_link(data):
     # body
     payload = json.dumps({
         "back_urls": {
-            "failure": f"https://{data['site']}/donate/failure/{data['id']}/",
-            "pending": f"https://{data['site']}/donate/pending/{data['id']}/",
-            "success": f"https://{data['site']}/donate/success/{data['id']}/"
+            "failure": f"https://{data['site']}/donate/failure/{data['id']}",
+            "pending": f"https://{data['site']}/donate/pending/{data['id']}",
+            "success": f"https://{data['site']}/donate/success/{data['id']}"
         },
         "external_reference": data['id'],
         "items": [

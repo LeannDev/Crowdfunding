@@ -118,8 +118,8 @@ def pp_payment_link(data):
             "brand_name": f"{data['donation']} {data['category']} for X- {data['site']}", # CHANGE X
             "landing_page": "NO_PREFERENCE",
             "user_action": "PAY_NOW",
-            "return_url": f"https:{data['site']}/donate/success/{data['id']}/",
-            "cancel_url": f"https:{data['site']}/donate/failure/{data['id']}/",
+            "return_url": f"https:{data['site']}/donate/success/{data['id']}",
+            "cancel_url": f"https:{data['site']}/donate/failure/{data['id']}",
             "shipping_preference": "NO_SHIPPING",
         },
     }, default=str)
