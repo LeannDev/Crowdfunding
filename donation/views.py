@@ -102,16 +102,25 @@ class DonationAddView(View):
                     access_token = get_access_token()
                     # add access token in dict
                     data['access_token'] = access_token
+                    # //////////////
+                    # add new data in dictionary
+                    data['payment_token'] = None
+                    data['id'] = int(id)
+                    # create a new donation
+                    donation = new_donation(data)
+                    # add new data in dictionary
+                    data['id'] = urlsafe_base64_encode(force_bytes(donation.id))
+                    # /////////////
                     
                     # get PayPal pay link
                     pay_link = pp_payment_link(data)
 
                     if pay_link:
-                        # add new data in dictionary
-                        data['payment_token'] = pay_link['id']
-                        data['id'] = int(id)
-                        # create a new donation
-                        new_donation(data)
+                        # # add new data in dictionary
+                        # data['payment_token'] = pay_link['id']
+                        # data['id'] = int(id)
+                        # # create a new donation
+                        # new_donation(data)
 
                         return redirect(pay_link['links'][1]['href'])
             

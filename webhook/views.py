@@ -53,8 +53,9 @@ class WebhookPp(View):
         
         if body['event_type'] == 'CHECKOUT.ORDER.APPROVED':
 
-            payment_token = body['resource']['id'] # ID
-            donation = DonationModel.objects.get(payment_token=payment_token) # search donation
+            reference_id = body['resource']['purchase_units']['reference_id'] # ID
+            id = force_str(urlsafe_base64_decode(reference_id)) # decode ID
+            donation = DonationModel.objects.get(id=id) # search donation
             donation.paid = True # update paid
             donation.save() # save donation
             goal = GoalModel.objects.get(id=donation.goal.id) # search goal
