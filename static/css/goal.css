@@ -3,7 +3,7 @@
     background-color: #214360;
     border: 1px solid #214360;
     border-radius: 1rem;
-    margin: 1rem .3rem 1rem .3rem;
+    margin: 1.5rem .3rem;
 
     -webkit-box-shadown: 9px 13px 21px 1px rgba(20,20,20,0.34);
     -moz-box-shadown: 9px 13px 21px 1px rgba(20,20,20,0.34);
@@ -25,8 +25,11 @@
     margin: 0 1rem;
 }
 
+.percentage-container {
+    text-align: center;
+}
+
 .percentage-container .percentage {
-    margin: 0 50%;
     color: #93fb07;
     font-family: 'Press Start 2P', cursive;
 }
@@ -63,6 +66,10 @@
     background-color: #93fb07;
     border: 2px solid #93fb07;
     text-decoration: none;
+}
+
+.card a:hover {
+    color: white;
 }
 
 .card .price {

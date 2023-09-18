@@ -19,6 +19,7 @@ label {
     margin: 0 calc(30% / 2);
     color: #d2d7e2;
     text-transform: capitalize;
+    font-weight: bolder;
 }
 
 input {
@@ -70,6 +71,8 @@ button {
     padding: .5rem 1.5rem;
     background-color: #93fb07;
     border: 2px solid #93fb07;
+    color: black;
+    font-weight: bolder;
 }
 
 /* INPUT VALIDATORS */

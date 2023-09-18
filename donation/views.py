@@ -1,3 +1,5 @@
+import uuid
+
 from django.shortcuts import render, redirect
 from django.views import View
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
@@ -76,10 +78,14 @@ class DonationAddView(View):
                 }
 
                 # /////////////////////// CREATE A FUNCTION IN MP AND PP ////////////////////////////////
+
+                # generate new uuid as token
+                uuid_token = uuid.uuid4()
+
                 # pay method redirect
                 if data['payment_method'] == 'MP':
                     # add new data in dictionary
-                    data['payment_token'] = None
+                    data['payment_token'] = uuid_token
                     data['id'] = int(id)
                     # create a new donation
                     donation = new_donation(data)
@@ -104,7 +110,7 @@ class DonationAddView(View):
                     data['access_token'] = access_token
                     # //////////////
                     # add new data in dictionary
-                    data['payment_token'] = None
+                    data['payment_token'] = uuid_token
                     data['id'] = int(id)
                     # create a new donation
                     donation = new_donation(data)
@@ -190,6 +196,30 @@ class DonatePendingView(View):
             id = force_str(urlsafe_base64_decode(base64))
             donation = DonationModel.objects.get(id=id)
             percentage = (donation.goal.progress * 100) / donation.goal.goal
+
+        except:
+            donation = None
+            percentage = None
+
+        context = {
+            'donation': donation,
+            'percentage': percentage,
+        }
+
+        return render(request, self.template_name, context)
+    
+# view for share donations in social networks
+class DonateShareView(View):
+
+    template_name = 'donation_share.html'
+
+    def get(self, request, uuid):
+
+        try:
+            # search in db for uuid
+            donation = DonationModel.objects.get(payment_token=uuid)
+            percentage = (donation.goal.progress * 100) / donation.goal.goal
+            print('PORCENTAJE ///////', percentage)
 
         except:
             donation = None

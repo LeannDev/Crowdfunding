@@ -1,0 +1,127 @@
+/* OPTIONS */
+label, select, button {
+    display: block;
+    
+}
+
+.options {
+    background-color: #214360;
+    border: 1px solid #214360;
+    border-radius: .1rem;
+    border-radius: 1rem;
+    margin: 1rem .5rem;
+    -webkit-box-shadown: 9px 13px 21px 1px rgba(20,20,20,0.34);
+    -moz-box-shadown: 9px 13px 21px 1px rgba(20,20,20,0.34);
+    box-shadow: 9px 13px 21px 1px rgba(20,20,20,0.34);
+    font-family: 'Oxanium', cursive;
+}
+
+label {
+    margin: 0 calc(30% / 2);
+    color: #d2d7e2;
+    text-transform: capitalize;
+    font-weight: bolder;
+    margin-top: 1rem;
+}
+
+select {
+    color: #d2d7e2;
+    background-color: #214360;
+    border: 2px solid #d2d7e2;
+    border-radius: 0.27rem;
+    width: 70%;
+    height: 2rem;
+    margin: .5rem auto;
+    display: block;
+}
+
+button {
+    margin: 1rem calc(30% / 2);
+    padding: .5rem 1.5rem;
+    background-color: #93fb07;
+    border: 2px solid #93fb07;
+    color: black;
+    font-weight: bolder;
+}
+
+/* CARD DONATION*/
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.donate-card {
+    background-color: #214360;
+    border: 1px solid #214360;
+    border-radius: 1rem;
+    margin: 1rem .5rem;
+    height: auto;
+    max-height: 500px;
+    aspect-ratio: 1/1;
+    position: relative;
+}
+
+.donate-card h2 {
+    margin-inline: 1rem;
+}
+
+.donate-card p {
+    margin-inline: 1rem;
+}
+
+.donation {
+    color: #93fb07;
+}
+
+.category {
+    color: #f750f7;
+}
+
+/* PROGRESS VAR*/
+.progress-countainer {
+    padding-top: .3rem;
+    padding-bottom: .4rem;
+    margin: 0 1rem;
+}
+
+.percentage-container {
+    text-align: center;
+}
+
+.percentage-container .percentage {
+    color: #93fb07;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.progress {
+    width: 100%;
+    height: .3rem;
+    background-color: #e7dff6;
+    border-radius: 2rem;
+    overflow: hidden;
+}
+
+.progress-bar {
+    display: block;
+    height: 100%;
+    background-color: #93fb07;
+    background-size: 300% 100%;
+    animation: progress-animation 2s linear infinite;
+}
+
+@keyframes progress-animation {
+    0% {
+        background-position: 100%;
+    }
+    100% {
+        background-position: 0;
+    }
+}
+
+/* FOOTER CARD */
+.date {
+    position: absolute;
+    bottom: 0;
+}

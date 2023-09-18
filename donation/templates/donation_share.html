@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/share.css' %}">
+{% endblock %}
+{% block content %}
+
+{% if donation %}
+<div class="options">
+
+    <label for="ratio">Aspect ratio</label>
+    <select name="ratio" id="ratio">
+        <option value="1/1">1:1</option>
+        <option value="9/16">9:16</option>
+    </select>
+
+    <button id="btnCapture">Download</button>
+</div>
+
+<div id="container">
+    <div class="donate-card" id="content">
+        <h2>{{ donation.name }} </br><span class="donation">adds {{ donation.donation }}</span> <span class="category">{{ donation.goal.category }}</span></h2>
+        <p>{{ donation.text }}</p>
+
+        <div class="progress-countainer">
+            <div class="progress">
+                <span class="progress-bar" style="width: {{ percentage|stringformat:'.2f' }}%"></span>
+            </div>
+        </div>
+        <div class="percentage-container">
+            <span class="percentage">{{ percentage|stringformat:'.0f' }}%</span>
+        </div>
+
+        <p class="date"><span>{{ donation.updated_at|timesince }} ago</span></p>
+    </div>
+</div>
+
+{% else %}
+<div>
+    <p>
+        404
+    </p>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.0/html2canvas.min.js"></script>
+<script src="{% static 'js/share.js' %}"></script>
+{% endblock %}

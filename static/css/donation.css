@@ -1,20 +1,79 @@
+.donate-card h1, h2, p {
+    margin-inline: 1rem;
+}
+
 .donate-card {
     background-color: #214360;
     border: 1px solid #214360;
     border-radius: 1rem;
     margin: 1rem .3rem 1rem .3rem;
-
-    -webkit-box-shadown: 9px 13px 21px 1px rgba(20,20,20,0.34);
-    -moz-box-shadown: 9px 13px 21px 1px rgba(20,20,20,0.34);
-    box-shadow: 9px 13px 21px 1px rgba(20,20,20,0.34);
+    -webkit-box-shadown: 9px 13px 21px 1px rgba(20, 20, 20, 0.34);
+    -moz-box-shadown: 9px 13px 21px 1px rgba(20, 20, 20, 0.34);
+    box-shadow: 9px 13px 21px 1px rgba(20, 20, 20, 0.34);
 }
 
 .donation {
     color: #93fb07;
 }
 
+.category {
+    color: #f750f7;
+}
+
 .donate-card .date {
     text-align: end;
     font-family: 'Press Start 2P', cursive;
     font-size: .5rem;
+}
+
+.share-donate {
+    text-align: end;
+}
+
+.share-donate a {
+    padding: .5rem;
+    margin: .3rem;
+    border-radius: .5rem;
+    color: white;
+}
+
+.share-donate svg {
+    vertical-align: middle;
+    transition: scale 200ms;
+}
+
+.share-donate svg:hover {
+    scale: 1.2;
+}
+
+/* PAGINATION */
+.pagination {
+    list-style-type: none;
+    text-align: center;
+    margin: 1rem auto;
+    padding: 1rem 0;
+}
+
+.page-item {
+    background-color: #214360;
+    border: 1px solid #214360;
+    border-radius: .5rem;
+    display: inline-block;
+    margin: .2rem;
+    padding: .5rem;
+}
+
+.page-link {
+    color: white;
+    padding: 0 4px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.current-link {
+    color: #93fb07;
+}
+
+a:hover {
+    color: #93fb07;
 }
