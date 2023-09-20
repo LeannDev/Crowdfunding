@@ -22,7 +22,7 @@ p {
 
 /* HEADER */
 header {
-    background-color: #214360;
+    background-color: #333333;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     color: #93fb07;
@@ -46,8 +46,8 @@ header img {
 
 /* NAV BAR */
 nav {
-    background-color: #214360;
-    border: 1px solid #214360;
+    background-color: #333333;
+    border: 1px solid #333333;
     border-radius: 0 0 1rem 1rem;
     -webkit-box-shadown: 0px 6px 3px 2px rgba(20,20,20,0.25);
     -moz-box-shadown: 0px 6px 3px 2px rgba(20,20,20,0.25);
@@ -85,7 +85,7 @@ main {
 }
 /* FOOTER */
 footer {
-    background-color: #1E3E59;
+    background-color: #333333;
     border-radius: 1rem 1rem 0 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);

@@ -3,8 +3,8 @@
 }
 
 .donate-card {
-    background-color: #214360;
-    border: 1px solid #214360;
+    background-color: #151515;
+    border: 1px solid #151515;
     border-radius: 1rem;
     margin: 1rem .3rem 1rem .3rem;
     -webkit-box-shadown: 9px 13px 21px 1px rgba(20, 20, 20, 0.34);
@@ -55,8 +55,8 @@
 }
 
 .page-item {
-    background-color: #214360;
-    border: 1px solid #214360;
+    background-color: #151515;
+    border: 1px solid #151515;
     border-radius: .5rem;
     display: inline-block;
     margin: .2rem;

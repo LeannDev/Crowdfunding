@@ -5,8 +5,8 @@ label, select, button {
 }
 
 .options {
-    background-color: #214360;
-    border: 1px solid #214360;
+    background-color: #151515;
+    border: 1px solid #151515;
     border-radius: .1rem;
     border-radius: 1rem;
     margin: 1rem .5rem;
@@ -26,7 +26,7 @@ label {
 
 select {
     color: #d2d7e2;
-    background-color: #214360;
+    background-color: #333333;
     border: 2px solid #d2d7e2;
     border-radius: 0.27rem;
     width: 70%;
@@ -53,8 +53,8 @@ button {
 }
 
 .donate-card {
-    background-color: #214360;
-    border: 1px solid #214360;
+    background-color: #151515;
+    border: 1px solid #151515;
     border-radius: 1rem;
     margin: 1rem .5rem;
     height: auto;

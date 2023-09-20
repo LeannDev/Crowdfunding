@@ -26,13 +26,13 @@
     </div>
     <div class="card-footer">
         <a href="{% url 'donate' goal_id %}">Donate</a>
-        <p class="price">* <span>${{ goals.price }}</span> for {{ goals.category }}</p>
+        <p class="price">* <span>${{ goals.price }}</span> for km</p>
     </div>
 </div>
 
 {% for donation in donations %}
 <div class="donate-card" id="donations">
-    <h2>{{ donation.name }} <span class="donation">adds {{ donation.donation }}</span> <span class="category">{{ goals.category }}</span></h2>
+    <h2>{{ donation.name }} <span class="donation">adds {{ donation.donation }}</span> <span class="category">km<sup>+</sup></span></h2>
     <p>{{ donation.text }}</p>
     <div class="share-donate">
         <a href="{% url 'share' donation.payment_token %}">
